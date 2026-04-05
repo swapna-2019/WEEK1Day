@@ -1,18 +1,22 @@
-import { test, expect } from '@playwright/test';
+//filename.spec.ts
+//npx playwright test filename.spec.ts
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+//npm -->node package manage
+//npx-->node package executor
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+import {chromium, firefox, test} from '@playwright/test'
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Launch Chrome Browser',async()=>{
+    
+      const browser= await chromium.launch({channel:'chrome'})
+      const browserContext=await browser.newContext()
+      const page=await browserContext.newPage()
+      await page.goto("http://www.google.com")
+})
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-});
+test('Launch FireFox Browser',async()=>{    
+      const browser= await firefox.launch({headless:false})
+      const browserContext=await browser.newContext()
+      const page=await browserContext.newPage()
+      await page.goto("http://www.google.com")
+})
