@@ -15,7 +15,7 @@ test('Launch Chrome Browser',async()=>{
 })
 
 test('Launch FireFox Browser',async()=>{    
-      const browser= await firefox.launch({headless:false})
+      const browser= await firefox.launch({channel:'firefox'})
       const browserContext=await browser.newContext()
       const page=await browserContext.newPage()
       await page.goto("http://www.google.com")
